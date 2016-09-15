@@ -245,4 +245,18 @@
     return _selectedBar;
 }
 
+#pragma mark - UIViewHierarchy
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CGRect selectedBarFrame = self.selectedBar.frame;
+    
+    if (self.frame.size.height != selectedBarFrame.size.height) {
+        selectedBarFrame.origin.y = self.frame.size.height - self.selectedBarHeight;
+        selectedBarFrame.size.height = self.frame.size.height;
+        self.selectedBar.frame = selectedBarFrame;
+    }
+}
+
 @end
